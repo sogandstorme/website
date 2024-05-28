@@ -155,14 +155,12 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Abstraction is at the heart of sketching due to the simple and minimal nature of line drawings.
-            Abstraction entails identifying the essential visual properties of an object or scene, which requires semantic understanding and prior knowledge of high-level concepts.
-            Abstract depictions are therefore challenging for artists, and even more so for machines.
-            We present an object sketching method that can achieve different levels of abstraction, guided by geometric and semantic simplifications.
-            While sketch generation methods often rely on explicit sketch datasets for training, we utilize the remarkable ability of CLIP (Contrastive-Language-Image-Pretraining) to distill semantic concepts from sketches and images alike.
-            We define a sketch as a set of Bézier curves and use a differentiable rasterizer to optimize the parameters of the curves directly with respect to a CLIP-based perceptual loss.
-            The abstraction degree is controlled by varying the number of strokes.
-            The generated sketches demonstrate multiple levels of abstraction while maintaining recognizability, underlying structure, and essential visual components of the subject drawn.
+            Personalized image generation involves creating images aligned with an individual’s visual preference. 
+            Current generative models are, however, tuned to produce outputs that appeal to a broad audience, and personalization to individual users' visual preferences relies on iterative and manual prompt engineering by the user, which is neither time-efficient nor scalable.
+          </p><p>
+            We propose to personalize the image generation process by first inviting users to comment on a small selection of images, explaining why they like or dislike each. 
+            Based on these comments, we infer a user’s liked and disliked visual attributes, \ie, their visual preference, using a large language model. These attributes are used to guide a text-to-image model toward producing images that are personalized towards the individual user's visual preference.
+            Through a series of user tests and large language model guided evaluations, we demonstrate that our proposed method results in generations that are well aligned with individual users' visual preferences.
           </p>
         </div>
       </div>
