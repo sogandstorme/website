@@ -230,23 +230,20 @@
             We back-propagate the loss through the differentiable rasterizer and update the strokes' control points directly at each step until convergence of the loss function.
             The learned parameters and loss terms are highlighted in red, while the blue components are frozen during the entire optimization process, solid arrows are used to mark the backpropagation path.
           </p>
+        <div class="column is-centered has-text-centered">
+        <img src="static/images/IDEFICS.png" alt="cars peace"/>
+        </div>
+          <p>
+            p of the optimization we feed the stroke parameters to a differentiable rasterizer to produce the rasterized sketch. The resulting sketch, as well as the original image are then fed into CLIP to define a CLIP-based perceptual loss. 
+            The key to the success of our method is to use the intermediate layers of a pretrained CLIP model to constrain the geometry of the output sketch. Without this term, the output sketch would not be similar to the input image.
+            We back-propagate the loss through the differentiable
+          </p>
         </div>
       </div>
     </div>
     <!--/ Abstract. -->
   </div>
 
-  <div class="hero-body">
-    <div class="container">
-      <!-- <p style="margin-top: 30px; margin-bottom: 30px"> -->
-      <h2 class="title has-text-centered">Proxy metric</h2>
-      <!-- </p> -->
-      
-      <div class="column is-centered has-text-centered">
-        <img src="static/images/IDEFICS.png" alt="cars peace"/>
-      </div>
-    </div>
-  </div>
 
 </section>
 
