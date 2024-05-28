@@ -1,212 +1,295 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="ViPer, Personalization, Visual preference">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ViPer: Visual Personalization of Generative Models via Individual Preference Learning </title>
+  
+  <meta property="og:title" content="CLIPasso: Semantically-Aware Object Sketching"/>
+  <meta property="og:url" content="https://clipasso.github.io/clipasso/"/>
+  <meta property="og:image" content="static/images/og_tag_header_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
+  <title>CLIPasso: Semantically-Aware Object Sketching</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  rel="stylesheet">
+  <link rel="icon" href="static/figures/icon2.png">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=9171MmH3WN39lpiFNBZkdAGt6QRMn6t9xAo7C_vxj6tZzYxb_z7uK9Jx1ZuU_w2Aps1WpTOmrQ7606P23I1A8g" charset="UTF-8"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
+<section class="publication-header">
+  <div class="hero-body">
+    <div class="container is-max-widescreen">
+      <!-- <div class="columns is-centered"> -->
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">CLIPasso: Semantically-Aware Object Sketching</h1>
         </div>
-      </div>
     </div>
+  </div>   
+</section>
 
-  </div>
-</nav>
-
-
-<section class="hero">
+<section class="publication-author-block">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">ViPer: Visual Personalization of Generative Models via Individual Preference Learning </h1>
+          <!-- <h1 class="title is-1 publication-title">CLIPasso: Semantically-Aware Object Sketching</h1> -->
           <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              Sogand Salehi,</span>
-            <span class="author-block">
-              Mahdi Shafiei,</span>
-            <span class="author-block">
-              Roman Bachmann,
-            </span>
-            <span class="author-block">
-              Teresa Yeo,
-            </span>
-            <span class="author-block">
-              Amir Zamir
-            </span>
+            <span class="author-block"><a href="https://yaelvi116.wixsite.com/mysite" target="_blank">Yael Vinker</a><sup>1,2</sup>,</span>
+            <span class="author-block"><a href="https://pajouheshgar.github.io/" target="_blank">Ehsan Pajouheshgar</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://jessica-bo.github.io/" target="_blank">Jessica Y. Bo</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://roman-bachmann.github.io/" target="_blank">Roman Bachmann</a><sup>1</sup>,</span><br>
+            <span class="author-block"><a href="https://www.cs.tau.ac.il/~amberman/" target="_blank">Amit Haim Bermano</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://danielcohenor.com/" target="_blank">Daniel Cohen-Or</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://vilab.epfl.ch/zamir/" target="_blank">Amir Zamir</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://faculty.idc.ac.il/arik/site/index.asp" target="_blank">Ariel Shamir</a><sup>3</sup></span>
           </div>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">Swiss Federal Institute of Technology (EPFL)</span>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>1</sup>Swiss Federal Institute of Technology (EPFL), <sup>2</sup>Tel Aviv University, <sup>3</sup>Reichman University</span> 
+            <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+          </div>
+          
+          <div class="is-size-3 publication-authors">
+            <span class="author-block">SIGGRAPH 2022 (Best Paper Award)</span> 
+            <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
+              
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
+                <a href="https://arxiv.org/abs/2202.05822" target="_blank"
+                  class="external-link button is-normal is-rounded">
                   <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
+                    <i class="ai ai-arxiv"></i>
                   </span>
                   <span>arXiv</span>
                 </a>
               </span>
-              <!-- Video Link. -->
+              
+              <!-- Colab Link. -->
               <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
+                <a href="https://github.com/yael-vinker/CLIPSketch" target="_blank"
+                class="external-link button is-normal is-rounded">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
               </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
+             <span class="link-block">
+              <a href="https://colab.research.google.com/github/yael-vinker/CLIPasso/blob/main/CLIPasso.ipynb"  target="_blank"
+                 class="external-link button is-normal is-rounded">
+                <span class="icon">
+                    <i class="fas fa-infinity"></i>
+                </span>
+                <span>Colab</span>
+              </a>
+             </span>
+            
+            <span class="link-block">
+              <a href="https://replicate.com/yael-vinker/clipasso"  target="_blank"
+                 class="external-link button is-normal is-rounded">
+                <span class="icon">
+                    <i class="fas fa-laptop"></i>
+                </span>
+                <span>Demo</span>
+              </a>
+             </span>
+           
             </div>
-
           </div>
+
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<section class="hero is-small">
+  <!-- <div class="hero-body"> -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img img src="./static/images/newpf.png">
-          
-      <h2 class="subtitle has-text-centered">
-        <span>ViPer is a visual personalization method that captures individual preferences and generates results based on them without the need for long, detailed, and engineered prompts.
+      <!-- <div id="results-carousel" class="carousel results-carousel"> -->
+      <div class="container">
+      <div class="item">
+      <div class="column is-centered has-text-centered">
+        <img src="static/figures/teaser2a.png" alt="clipasso"/>
+      </div>
+      <h2 class="subtitle">
+        Our work converts an image of an object to a sketch, allowing for varying levels of abstraction, while preserving its key visual features.<br>Even with a very minimal representation (the rightmost flamingo and horse are drawn with only a few strokes), one can recognize both the semantics and the structure of the subject depicted. 
       </h2>
     </div>
   </div>
+ <!--  </div> -->
+  </div>
+  </div>
+ <!--  </div> -->
 </section>
 
-<section class="section">
+<section class="section hero is-light">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
+        <div class="item">
+          <p style="margin-bottom: 30px">
+        <video poster="" id="tree" autoplay controls muted loop height="100%">
+          <source src="static/figures/sketchy_video.mp4"
+          type="video/mp4">
+        </video>
+        </p>
+        </div>
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Personalized image generation involves creating images aligned with an individual’s visual preference. 
-            Current generative models are, however, tuned to produce outputs that appeal to a broad audience, and personalization to individual users' visual preferences relies on iterative and manual prompt engineering by the user, which is neither time-efficient nor scalable.
-          </p>
-        
-          <p>
-We propose to personalize the image generation process by first inviting users to comment on a small selection of images, explaining why they like or dislike each. 
-Based on these comments, we infer a user’s liked and disliked visual attributes, \ie, their visual preference, using a large language model. These attributes are used to guide a text-to-image model toward producing images that are personalized towards the individual user's visual preference.
-Through a series of user tests and large language model guided evaluations, we demonstrate that our proposed method results in generations that are well aligned with individual users' visual preferences.
+            Abstraction is at the heart of sketching due to the simple and minimal nature of line drawings.
+            Abstraction entails identifying the essential visual properties of an object or scene, which requires semantic understanding and prior knowledge of high-level concepts.
+            Abstract depictions are therefore challenging for artists, and even more so for machines.
+            We present an object sketching method that can achieve different levels of abstraction, guided by geometric and semantic simplifications.
+            While sketch generation methods often rely on explicit sketch datasets for training, we utilize the remarkable ability of CLIP (Contrastive-Language-Image-Pretraining) to distill semantic concepts from sketches and images alike.
+            We define a sketch as a set of Bézier curves and use a differentiable rasterizer to optimize the parameters of the curves directly with respect to a CLIP-based perceptual loss.
+            The abstraction degree is controlled by varying the number of strokes.
+            The generated sketches demonstrate multiple levels of abstraction while maintaining recognizability, underlying structure, and essential visual components of the subject drawn.
           </p>
         </div>
       </div>
     </div>
-</section>
     <!--/ Abstract. -->
+  </div>
+</section>
 
 
-    <!-- More Visuals -->
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title has-text-centered">Object to Sketch Synthesis with Different Levels of Abstraction</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+      <div class="column is-centered has-text-centered">
+        <img src="static/figures/rose.png" alt="cars peace"/>
+      </div>
+      <div class="column is-centered has-text-centered">
+        <img src="static/figures/camel.png" alt="cars peace"/>
+      </div>
+      <div class="column is-centered has-text-centered">
+        <img src="static/figures/cat1.png" alt="cars peace"/>
+      </div>
+      <div class="column is-centered has-text-centered">
+        <img src="static/figures/flamingo.png" alt="cars peace"/>
+      </div>
+      <div class="column is-centered has-text-centered">
+        <img src="static/figures/giraffe.png" alt="cars peace"/>
+      </div>
+      <div class="column is-centered has-text-centered">
+        <img src="static/figures/elephant.png" alt="cars peace"/>
+      </div>
+      <div class="column is-centered has-text-centered">
+        <img src="static/figures/dog.png" alt="cars peace"/>
+      </div>
+      <div class="column is-centered has-text-centered">
+        <img src="static/figures/men.png" alt="cars peace"/>
+      </div>
+     
+    
+  </div>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">How does it work?</h2>
+        <div class="content has-text-justified">
+          <p>
+
+            Our method is optimization-based and therefore does not require any explicit sketch dataset. 
+            We use the CLIP image encoder to guide the process of converting a photograph to an abstract sketch.
+
+            CLIP encoding provides the semantic understanding of the concept depicted, while the photograph itself provides the geometric grounding of the sketch to the concrete subject.
+
+            We define a sketch as a set of N black strokes placed on a white background.
+            We vary the number of strokes N to create different levels of abstraction. 
+          </p>
+        </div>
+        <div class="column is-centered has-text-centered">
+        <img src="static/figures/pipeline_final.png" alt="cars peace"/>
+      </div>
+        <div class="content has-text-justified">
+          <p>
+            Given a target image I of the desired subject, our goal is to synthesize the corresponding sketch S while maintaining both the semantic and geometric attributes of the subject.
+            We begin by extracting the salient regions of the input image to define the initial locations of the strokes.
+            Next, in each step of the optimization we feed the stroke parameters to a differentiable rasterizer to produce the rasterized sketch. The resulting sketch, as well as the original image are then fed into CLIP to define a CLIP-based perceptual loss. 
+            The key to the success of our method is to use the intermediate layers of a pretrained CLIP model to constrain the geometry of the output sketch. Without this term, the output sketch would not be similar to the input image.
+            We back-propagate the loss through the differentiable rasterizer and update the strokes' control points directly at each step until convergence of the loss function.
+            The learned parameters and loss terms are highlighted in red, while the blue components are frozen during the entire optimization process, solid arrows are used to mark the backpropagation path.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section> 
+
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <!-- <h2 class="title is-3">ICCV Presentation</h2> -->
+      <div class="columns is-centered has-text-centered">
+        
+        <div class="item">
+        <p style="margin-top: 30px">
+
+        <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <source src="static/gifs/classes_art.mp4"
+        type="video/mp4">
+        </video>
+        <h2 class="subtitle">
+          Our approach is different from conventional sketching methods in that it does not utilize a sketch dataset for training, rather it is optimized under the guidance of CLIP. Thus, our method is not limited to specific categories observed during training, as no category definition was introduced at any stage. This makes our method robust to various inputs.
+        </h2>
+        </p>
+        </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+    </div>
+</section>
+
+
+
+
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
@@ -218,239 +301,120 @@ Through a series of user tests and large language model guided evaluations, we d
         <!-- <div class="column is-centered has-text-centered">
         <img src="static/figures/styles/abstractions_controlpoints.png" width="1000" height="400" class="is-centered"/>
         </div> -->
-        
-        
-        
-      <div id="slider2e774524-c04f-4d8a-a29c-b30145b80c75" class="slider" tabindex="0">
-    <div class="slider-container" style="opacity: 1; width: 6510px; transition: none 0s ease 0s; transform: translate3d(-420px, 0px, 0px);"><div class="slider-item" data-slider-index="-2" data-cloned="true" style="width: 210px;"><div class="column is-centered has-text-centered">
-        <img src="static/images/fig0.png" width="400" height="400">
-        </div></div><div class="slider-item" data-slider-index="-1" data-cloned="true" style="width: 210px;"><div class="columns is-centered has-text-centered">
-        <img src="static/images/fig1.png" width="400" height="400">
-        </div></div><div class="slider-item is-current" data-slider-index="0" style="width: 210px;"><div class="column is-centered has-text-centered">
-        <img src="static/images/fig2.png" width="400" height="400" class="is-centered">
-        </div></div><div class="slider-item is-slide-previous is-slide-next" data-slider-index="1" style="width: 210px;"><div class="column is-centered has-text-centered">
-        <img src="static/images/fig3.png" width="400" height="400">
-        </div></div><div class="slider-item" data-slider-index="2" style="width: 210px;"><div class="columns is-centered has-text-centered">
-        <img src="static/images/fig4.png" width="400" height="400">
-        </div></div><div class="slider-item" data-slider-index="3" data-cloned="true" style="width: 210px;"><div class="column is-centered has-text-centered">
-        <img src="static/images/fig5.png" width="400" height="400" class="is-centered">
-        </div></div><div class="slider-item" data-slider-index="4" data-cloned="true" style="width: 210px;"><div class="column is-centered has-text-centered">
-        <img src="static/images/fig3.png" width="400" height="400">
-        </div></div><div class="slider-item" data-slider-index="5" data-cloned="true" style="width: 210px;"><div class="columns is-centered has-text-centered">
-        <img src="static/images/fig4.png" width="400" height="400">
-        </div></div><div class="slider-item" data-slider-index="6" data-cloned="true" style="width: 210px;"><div class="column is-centered has-text-centered">
-        <img src="static/images/fig2.png" width="400" height="400" class="is-centered">
-        </div></div></div>
-  <div class="slider-navigation-previous"><svg viewBox="0 0 50 80" xml:space="preserve">
-      <polyline fill="currentColor" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "></polyline>
-    </svg></div>
-<div class="slider-navigation-next"><svg viewBox="0 0 50 80" xml:space="preserve">
-      <polyline fill="currentColor" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "></polyline>
-    </svg></div><div class="slider-pagination"><div class="slider-page" data-index="0"></div><div class="slider-page" data-index="2"></div><div class="slider-page" data-index="4"></div><div class="slider-page" data-index="6"></div></div></div></div>
+        <div class="column is-centered has-text-centered">
+        <img src="static/figures/styles/flamingo_a2.png" width="400" height="400" class="is-centered"/>
+        </div>
+        <div class="column is-centered has-text-centered">
+        <img src="static/figures/styles/horse.png" width="400" height="400"/>
+        </div>
+        <div class="columns is-centered has-text-centered">
+        <img src="static/figures/styles/women7.png" width="400" height="400"/>
+        </div>
+      </div>
     </div>
   </div>
 
 </section>
 
 
-    <!--/ More Visuals -->
 
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
+
+
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper poster -->
+
+      <h2 class="title has-text-centered">Sketching "in the wild": results of 100 random images of cats from SketchCOCO</h2>
+      <p style="margin-top: 30px; margin-bottom: 30px">
+      <!-- <div class="column is-four-fifths"> -->
+          <div class="column is-centered has-text-centered">
+        <img src="static/figures/cats2.png" alt="cars peace"/>
+      </div>
+       </p>
+        <!--/ Paper poster -->
       </div>
     </div>
-    <!--/ Paper video. -->
-  </div>
+
+  </section>
+
+
+
+
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{vinker2022clipasso,
+        author = {Vinker, Yael and Pajouheshgar, Ehsan and Bo, Jessica Y. and Bachmann, Roman Christian and Bermano, Amit Haim and Cohen-Or, Daniel and Zamir, Amir and Shamir, Ariel},
+        title = {CLIPasso: Semantically-Aware Object Sketching},
+        year = {2022},
+        issue_date = {July 2022},
+        publisher = {Association for Computing Machinery},
+        address = {New York, NY, USA},
+        volume = {41},
+        number = {4},
+        issn = {0730-0301},
+        url = {https://doi.org/10.1145/3528223.3530068},
+        doi = {10.1145/3528223.3530068},
+        journal = {ACM Trans. Graph.},
+        month = {jul},
+        articleno = {86},
+        numpages = {11},
+        keywords = {vector line art generation, sketch synthesis, image-based rendering}
+    }</code></pre>
+    </div>
 </section>
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
-
-  </div>
-</section>
-
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}</code></pre>
-  </div>
-</section>
 
 
 <footer class="footer">
-  <div class="container">
+ <!--  <div class="container">
     <div class="content has-text-centered">
       <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
-        </div>
-      </div>
+      href="https://homes.cs.washington.edu/~kpar/nerfies/videos/nerfies_paper.pdf">
+      <i class="fas fa-file-pdf"></i>
+    </a>
+    <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+      <i class="fab fa-github"></i>
+    </a>
+  </div> -->
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div class="content">
+        <p>
+          This website is licensed under a <a rel="license"
+          href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+        Commons Attribution-ShareAlike 4.0 International License</a>.
+      </p>
+      <p>
+        Website source code based on the <a href="https://nerfies.github.io/"> Nerfies</a> project page. If you want to reuse their <a
+        href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them appropriately.
+      </p>
     </div>
   </div>
+</div>
+</div>
 </footer>
 
-</body>
-</html>
+
+  <script type="text/javascript">
+    var sc_project=12351448; 
+    var sc_invisible=1; 
+    var sc_security="c676de4f"; 
+  </script>
+  <script type="text/javascript"
+  src="https://www.statcounter.com/counter/counter.js"
+  async></script>
+  <noscript><div class="statcounter"><a title="Web Analytics"
+    href="https://statcounter.com/" target="_blank"><img
+    class="statcounter"
+    src="https://c.statcounter.com/12351448/0/c676de4f/1/"
+    alt="Web Analytics"></a></div></noscript>
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
