@@ -129,7 +129,7 @@
         <img src="static/images/newpf.png" alt="clipasso"/>
       </div>
       <h2 class="subtitle">
-         ViPer is a visual personalization method that captures individual preferences, generating results based on them without the need for long, detailed, and engineered prompts. 
+         ViPer is a visual personalization method that captures individual preferences, generating results based on them without the need for long, detailed, and engineered prompts. Note how, for each user, the generated images follow a consistent preference pattern across different prompts.
       </h2>
     </div>
   </div>
@@ -208,14 +208,9 @@
         <h2 class="title is-3">How does it work?</h2>
         <div class="content has-text-justified">
           <p>
-
-            Our method is optimization-based and therefore does not require any explicit sketch dataset. 
-            We use the CLIP image encoder to guide the process of converting a photograph to an abstract sketch.
-
-            CLIP encoding provides the semantic understanding of the concept depicted, while the photograph itself provides the geometric grounding of the sketch to the concrete subject.
-
-            We define a sketch as a set of N black strokes placed on a white background.
-            We vary the number of strokes N to create different levels of abstraction. 
+            We ask interested individuals to comment on a small set of images. These images are generated such that they have diverse styles and concepts. 
+            Note that the individuals' comments are not required to be of a specific structure. Thus, users can write as much or little as they like. 
+            Clearly, more detailed and expressive comments would lead to better personalization.
           </p>
         </div>
         <div class="column is-centered has-text-centered">
@@ -223,20 +218,19 @@
         </div>
         <div class="content has-text-justified">
           <p>
-            Given a target image I of the desired subject, our goal is to synthesize the corresponding sketch S while maintaining both the semantic and geometric attributes of the subject.
-            We begin by extracting the salient regions of the input image to define the initial locations of the strokes.
-            Next, in each step of the optimization we feed the stroke parameters to a differentiable rasterizer to produce the rasterized sketch. The resulting sketch, as well as the original image are then fed into CLIP to define a CLIP-based perceptual loss. 
-            The key to the success of our method is to use the intermediate layers of a pretrained CLIP model to constrain the geometry of the output sketch. Without this term, the output sketch would not be similar to the input image.
-            We back-propagate the loss through the differentiable rasterizer and update the strokes' control points directly at each step until convergence of the loss function.
-            The learned parameters and loss terms are highlighted in red, while the blue components are frozen during the entire optimization process, solid arrows are used to mark the backpropagation path.
+            Our method allows for such free-form comments as we make use of a language model to extract structured preferences, i.e. a visual preference extractor (VPE). 
+            To get the VPE, we fine-tune IDEFICS2-8B on a dataset of simulated agents and their comments and preferences. Converting the user’s free-form comments into structured visual 
+            preferences is a one-time process that provides us with a concise representation of the individual's preferences. 
+
+            The user’s visual preference are then encoded and added to the prompt embedding. They’re also used in the guidance formula directly to guide Stable Diffusion’s results toward 
+            the user’s preferences.
           </p>
         <div class="column is-centered has-text-centered">
-        <img src="static/images/IDEFICS.png" alt="cars peace"/>
+        <img src="static/images/scores.png" alt="cars peace"/>
         </div>
           <p>
-            p of the optimization we feed the stroke parameters to a differentiable rasterizer to produce the rasterized sketch. The resulting sketch, as well as the original image are then fed into CLIP to define a CLIP-based perceptual loss. 
-            The key to the success of our method is to use the intermediate layers of a pretrained CLIP model to constrain the geometry of the output sketch. Without this term, the output sketch would not be similar to the input image.
-            We back-propagate the loss through the differentiable
+            Moreover, we introduce a proxy metric for automatic evaluation. We fine-tune IDEFICS2-8B for this task, representing each individual by the sets of images they like and dislike. 
+            Given these sets of images, the proxy metric assigns higher scores to query images that share the preferred visual attributes while avoiding the disliked visual attributes, and lower scores to those that do not.
           </p>
         </div>
       </div>
