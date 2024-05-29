@@ -212,11 +212,6 @@
             Note that the individuals' comments are not required to be of a specific structure. Thus, users can write as much or little as they like. 
             Clearly, more detailed and expressive comments would lead to better personalization.
           </p>
-        </div>
-        <div class="column is-centered has-text-centered">
-        <img src="static/images/overview_figure.png" alt="cars peace"/>
-        </div>
-        <div class="content has-text-justified">
           <p>
             Our method allows for such free-form comments as we make use of a language model to extract structured preferences, i.e. a visual preference extractor (VPE). 
             To get the VPE, we fine-tune IDEFICS2-8B on a dataset of simulated agents and their comments and preferences. Converting the user’s free-form comments into structured visual 
@@ -225,13 +220,19 @@
             The user’s visual preference are then encoded and added to the prompt embedding. They’re also used in the guidance formula directly to guide Stable Diffusion’s results toward 
             the user’s preferences.
           </p>
-        <div class="column is-centered has-text-centered">
-        <img src="static/images/scores.png" alt="cars peace"/>
         </div>
+        <div class="column is-centered has-text-centered">
+        <img src="static/images/overview_figure.png" alt="cars peace"/>
+        </div>
+        <div class="content has-text-justified">
           <p>
             Moreover, we introduce a proxy metric for automatic evaluation. We fine-tune IDEFICS2-8B for this task, representing each individual by the sets of images they like. 
             Given this set of images, the proxy metric assigns higher scores to query images that share the preferred visual attributes, and lower scores to those that do not.
           </p>
+        <div class="column is-centered has-text-centered">
+        <img src="static/images/scores.png" alt="cars peace"/>
+        </div>
+          <p>Note that, in contrast to other existing methods, our method for extracting preferences is a one-time process. Generating personalized images from the extracted preferences does not require any fine-tuning and can be used directly with the Stable Diffusion model.</p>
         </div>
       </div>
     </div>
