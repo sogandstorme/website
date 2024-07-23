@@ -129,7 +129,7 @@
         <img src="static/images/newpf.webp" alt=""/>
       </div>
       <h2 class="subtitle">
-         ViPer is a visual personalization method that captures individual preferences, generating results based on them without the need for long, detailed, and engineered prompts. Note how, for each user, the generated images follow a consistent preference pattern across different prompts.
+         We introduce ViPer, a method that personalizes the output of generative models to align with different users' preferences for the same prompt. This is done via a one-time capture of the user's general preferences and conditioning the generative model on them without the need for engineered detailed prompts. Notice how the results vary for the same prompt for different users based on their visual preferences.
       </h2>
     </div>
   </div>
@@ -155,12 +155,13 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Personalized image generation involves creating images aligned with an individual’s visual preference. 
-            Current generative models are, however, tuned to produce outputs that appeal to a broad audience, and personalization to individual users' visual preferences relies on iterative and manual prompt engineering by the user, which is neither time-efficient nor scalable.
+            Different users find different images generated for the same prompt desirable. This gives rise to personalized image generation which involves creating images aligned with an individual’s visual preference. 
+            Current generative models are, however, tuned to produce outputs that appeal to a broad audience are unpersonalized. Using them to generate images aligned with individual users relies on iterative manual prompt engineering by the user which is inefficient and undesirable.
           </p><p>
-            We propose to personalize the image generation process by first inviting users to comment on a small selection of images, explaining why they like or dislike each. 
-            Based on these comments, we infer a user’s liked and disliked visual attributes, .ie, their visual preference, using a large language model. These attributes are used to guide a text-to-image model toward producing images that are personalized towards the individual user's visual preference.
-            Through a series of user tests and large language model guided evaluations, we demonstrate that our proposed method results in generations that are well aligned with individual users' visual preferences.
+            We propose to personalize the image generation process by, first, capturing the generic prefernces of the user in a one-time process by inviting them to comment on a small selection of images, explaining why they like or dislike each. 
+            Based on these comments, we infer a user’s structured liked and disliked visual attributes, i.e., their visual preference, using a large language model. These attributes are used to guide a text-to-image model toward producing images that are tuned towards the individual user's visual preference.
+            Through a series of user studies and large language model guided evaluations, we demonstrate that the proposed method results in generations that are well aligned with individual users' visual preferences.
+            Our code and model weights are open sourced at https://viper.epfl.ch.
           </p>
         </div>
       </div>
